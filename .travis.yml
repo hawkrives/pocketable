@@ -81,7 +81,7 @@ script:
   - if [[ "$TEST_TYPE" == "js" ]]; then npm run test; fi
 
   # iOS-only tests - building and specs
-  - if [[ "$TEST_TYPE" == "ios" ]]; then npm run test:ios; fi
+  - if [[ "$TEST_TYPE" == "ios" ]]; then xctool -configuration Release -project ios/PockeTable.xcodeproj -scheme PockeTable -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 5s,OS=9.2'; fi
 
   # android-only tests - building and specs
-  - if [[ "$TEST_TYPE" == "android" ]]; then npm run test:android; fi
+  - if [[ "$TEST_TYPE" == "android" ]]; then cd android && ./gradlew assembleRelease --info --console=plain; fi
